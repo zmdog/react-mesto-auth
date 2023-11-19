@@ -1,0 +1,31 @@
+.profile__change-button {
+    position: relative;
+    border-radius: 50%;
+    background-color: #000;
+}
+
+.profile__change-button:after {
+    content: url("../../../images/change-button.svg");
+    visibility: hidden;
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.profile__change-button:hover .profile__avatar {
+    opacity: .6;
+    cursor: pointer;
+}
+
+.profile__change-button:hover:after {
+    visibility: visible;
+}
+
+.profile__change-button:hover {
+    opacity: 1;
+}

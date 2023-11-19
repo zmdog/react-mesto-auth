@@ -1,0 +1,10 @@
+.authorization__container {
+    display: grid;
+    gap: 30px;
+}
+
+@media screen and (max-width: 880px) {
+    .authorization {
+        width: calc(260 / 320 * 100%);
+    }
+}

@@ -1,0 +1,9 @@
+.authorization__set {
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-bottom: 2px solid #CCC;
+    height: 25px;
+    display: grid;
+    gap: 14px;
+}

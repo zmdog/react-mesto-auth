@@ -1,0 +1,20 @@
+.header__button-auth {
+    color: #A9A9A9;
+    font-weight: 400;
+    font-size: 18px;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 880px) {
+    .header__button-auth {
+        height: 17px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .header__button-auth {
+        display: none;
+    }
+}
+

@@ -1,0 +1,15 @@
+.header__container {
+    display: inherit;
+    justify-content: space-between;
+    height: 118px;
+    align-items: center;
+    border-top: solid 1px rgba(84, 84, 84, 0.7);
+    border-bottom: solid 1px rgba(84, 84, 84, 0.7);
+}
+
+@media screen and (max-width: 880px) {
+    .header__container {
+        padding: 0 30px;
+        height: 83px;
+    }
+}

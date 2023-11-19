@@ -1,0 +1,4 @@
+.popup__wrapper_image {
+    position: inherit;
+    z-index: 1;
+}

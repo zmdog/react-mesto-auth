@@ -1,0 +1,5 @@
+@media screen and (max-width: 400px) {
+    .header__button-auth_width-400 {
+        font-size: 18px;
+    }
+}

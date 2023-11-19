@@ -1,0 +1,4 @@
+.header__wrapper-bar_visible {
+    height: 142px;
+    transition: height .5s linear;
+}

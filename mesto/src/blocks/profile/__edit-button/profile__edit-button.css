@@ -1,0 +1,22 @@
+.profile__edit-button {
+    height: 24px;
+    width: 24px;
+    border: solid 1px #FFF;
+    align-self: end;
+    background-color: transparent;
+    background-image: url("../../../images/eidt-button.svg");
+    background-repeat: no-repeat;
+    background-size: 10px;
+    margin-bottom: 9px;
+    background-position: center;
+}
+
+@media screen and (max-width: 880px) {
+    .profile__edit-button {
+        position: absolute;
+        right: -26px;
+        width: 18px;
+        height: 18px;
+        background-size: 7.5px;
+    }
+}
