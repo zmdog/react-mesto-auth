@@ -1,0 +1,93 @@
+/* Vendor_styles */
+@import "vendor/normalize.css";
+
+/* Vendor_fonts */
+@import "vendor/fonts/fonts.css";
+
+/* Mix */
+@import "blocks/button/button.css";
+@import "blocks/visible/visible.css";
+
+/* Page */
+@import "blocks/page/page.css";
+
+/* Header */
+@import "blocks/header/header.css";
+@import "blocks/header/__logo/header__logo.css";
+@import "blocks/header/__email/header__email.css";
+@import "blocks/header/__wrapper-bar/header__wrapper-bar.css";
+@import "blocks/header/__wrapper-logo/header__wrapper-logo.css";
+@import "blocks/header/__wrapper-bar/_visible/header__wrapper-bar_visible.css";
+@import "blocks/header/__button-auth/header__button-auth.css";
+@import "blocks/header/__button-auth/_width-400/header__button-auth_width-400.css";
+@import "blocks/header/__button-menu/header__button-menu.css";
+@import "blocks/header/__button-menu/_closed/header__button-menu_closed.css";
+@import "blocks/header/__button-menu/_opened/header__button-menu_opened.css";
+@import "blocks/header/__info/header__info.css";
+@import "blocks/header/__container/header__container.css";
+
+/* Content */
+@import "blocks/content/content.css";
+
+/* Content-Profile */
+@import "blocks/profile/profile.css";
+@import "blocks/profile/__add-button/profile__add-button.css";
+@import "blocks/profile/__avatar/profile__avatar.css";
+@import "blocks/profile/__change-button/__change-button.css";
+@import "blocks/profile/__edit-button/profile__edit-button.css";
+@import "blocks/profile/__wrapper/profile__wrapper.css";
+@import "blocks/profile/__info/profile__info.css";
+@import "blocks/profile/__name/profile__name.css";
+@import "blocks/profile/__status/profile__status.css";
+@import "blocks/profile/__avatar/profile__avatar.css";
+
+/* Content-Elements */
+@import "blocks/elements/__elements-grid/elements__elements-grid.css";
+
+@import "blocks/element/element.css";
+@import "blocks/element/__title/element__title.css";
+@import "blocks/element/__label/element__label.css";
+@import "blocks/element/__like/element__like.css";
+@import "blocks/element/__counter/_like/element__counter_like.css";
+@import "blocks/element/__delete/element__delete.css";
+@import "blocks/element/__delete/_removed/element__delete_removed.css";
+@import "blocks/element/__like/_active/element__like_active.css";
+@import "blocks/element/__photo/element__photo.css";
+
+/* Footer */
+@import "blocks/footer/footer.css";
+@import "blocks/footer/__copyright/footer__copyright.css";
+
+/* PopUp */
+@import "blocks/popup/popup.css";
+@import "blocks/popup/__edit/popup__edit.css";
+@import "blocks/popup/__purpose/popup__purpose.css";
+@import "blocks/popup/__submit-button/popup__submit-button.css";
+@import "blocks/popup/__submit-button/_active/popup__submit-button_active.css";
+@import "blocks/popup/__submit-button/_inactive/popup__submit-button_inactive.css";
+@import "blocks/popup/__close-button/popup__close-button.css";
+@import "blocks/popup/_opened/popup_opened.css";
+@import "blocks/popup/_closed/popup_closed.css";
+@import "blocks/popup/_image/popup_image.css";
+@import "blocks/popup/__input-error/popup__input-error.css";
+@import "blocks/popup/__set/popup__set.css";
+@import "blocks/popup/__field/popup__field.css";
+@import "blocks/popup/__container/popup__container.css";
+@import "blocks/popup/__image/popup__image.css";
+@import "blocks/popup/__title/_image/popup__title_image.css";
+@import "blocks/popup/__title/_tooltip/popup__title_tooltip.css";
+@import "blocks/popup/__wrapper/_default/popup__wrapper_default.css";
+@import "blocks/popup/__wrapper/_image/popup__wrapper_image.css";
+@import "blocks/popup/__wrapper/tooltip/popup__wrapper_tooltip.css";
+@import "blocks/popup/__tooltip/popup__tooltip.css";
+@import "blocks/popup/__tooltip/_agreed/popup__tooltip_agreed.css";
+@import "blocks/popup/__tooltip/_denied/popup__tooltip_denied.css";
+
+/* Authorization */
+@import "blocks/authorization/authorization.css";
+@import "blocks/authorization/__title/authorization__title.css";
+@import "blocks/authorization/__set/authorization__set.css";
+@import "blocks/authorization/__edit/authorization__edit.css";
+@import "blocks/authorization/__container/authorization__container.css";
+@import "blocks/authorization/__submit-button/authorization__submit-button.css";
+@import "blocks/authorization/__redirect/authorization__redirect.css";
