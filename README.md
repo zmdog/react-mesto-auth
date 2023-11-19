@@ -12,6 +12,6 @@
 6. Регистрация и авторизация: JWT
 
 ## Ссылка на GitHub Pages:
-
+https://zmdog.github.io/react-mesto-auth/mesto
 
 ### Спасибо за внимание!
