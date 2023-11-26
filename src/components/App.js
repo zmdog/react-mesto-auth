@@ -1,7 +1,7 @@
 import React from 'react';
 import Main from "./Main";
 import Footer from "./Footer";
-import ImagePopup from "./ImagePopup";
+import PopupImage from "./PopupImage";
 import {api} from "../utils/api";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import {CardsContext} from "../contexts/CardsContext";
@@ -12,8 +12,12 @@ import DeleteCardPopup from "./DeleteCardPopup";
 import {FetchingContext} from "../contexts/FetchingContext";
 import {apiAuthorization} from "../utils/apiAuthorization";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import InfoTooltip from "./InfoTooltip";
+import PopupInfoTooltip from "./PopupInfoTooltip";
 import Header from "./Header";
+import ProtectedRoute from "./ProtectedRoute";
+import Card from "./Card";
+import Register from "./Register";
+import Login from "./Login";
 
 function App() {
 
@@ -138,7 +142,7 @@ function App() {
     React.useEffect(() => {
         api.getInfoProfile().then(info => setUserInfo(info))
             .catch(err => console.log(err))
-    }, [isEditProfilePopupOpen])
+    }, [])
     React.useEffect(() => {
         initialCards()
     }, [])
@@ -162,41 +166,62 @@ function App() {
             <FetchingContext.Provider value={isFetching}>
                 <BrowserRouter>
                     <div className="page">
-                        <Routes>
-                            <Route exact path='/' element={
-                                <Header
-                                    setEmail={setEmail}
-                                    onLoggedIn={setLoggedIn}
-                                    buttonLabel={'Выйти'}
-                                    path={'/sign-in'}
-                                />
-                            }/>
-                            <Route exact path='/sign-up' element={
-                                <Header
-                                    setEmail={setEmail}
-                                    onLoggedIn={setLoggedIn}
-                                    buttonLabel={'Войти'}
-                                    path={'/sign-in'}
-                                />}/>
-                            <Route exact path='/sign-in' element={
-                                <Header
-                                    setEmail={setEmail}
-                                    onLoggedIn={setLoggedIn}
-                                    buttonLabel={'Регистрация'}
-                                    path={'/sign-up'}
-                                />}/>
-                        </Routes>
+                        <Header
+                            setEmail={setEmail}
+                            onLoggedIn={setLoggedIn}/>
                         <CardsContext.Provider value={cards}>
-                            <Main
-                                onLoggedIn={setLoggedIn}
-                                onEditAvatar={handleEditAvatarClick}
-                                onEditProfile={handleEditProfileClick}
-                                onAddPlace={handleAddPlaceClick}
-                                onCardClick={handleCardClick}
-                                onLikeClick={handleCardLike}
-                                onCardDelete={handleDeleteCard}
-                                onTooltipClick={handleTooltipClick}
-                            />
+                            <Routes>
+                                <Route exact path='/' element={<Main element={<ProtectedRoute element={() => {
+                                    return (<>
+                                        <section className="profile" aria-label="Шапка профиля">
+                                            <button
+                                                onClick={handleEditAvatarClick}
+                                                className=" button profile__change-button">
+                                                <img className="profile__avatar" src={currentUser.avatar}
+                                                     alt="Иконка профиля"/>
+                                            </button>
+                                            <div className="profile__info">
+                                                <div className="profile__wrapper">
+                                                    <h1 className="profile__name">{currentUser.name}</h1>
+                                                    <button
+                                                        onClick={handleEditProfileClick}
+                                                        title="Изменить имя и статус профиля"
+                                                        aria-label="Изменить имя и статус профиля"
+                                                        type="button"
+                                                        className="button profile__edit-button"
+                                                    ></button>
+                                                </div>
+                                                <p className="profile__status">{currentUser.about}</p>
+                                            </div>
+                                            <button
+                                                onClick={handleAddPlaceClick}
+                                                title="Добавить новое Место"
+                                                aria-label="Добавить новое Место"
+                                                type="button"
+                                                className="button profile__add-button"
+                                            ></button>
+                                        </section>
+                                        <section className="elements" aria-label="Места для посещения">
+                                            <ul className="elements__elements-grid">
+                                                {cards.map(card => (
+                                                    <li key={card._id} className="wrapper-element">
+                                                        <Card
+                                                            onCardDelete={handleDeleteCard}
+                                                            onCardClick={handleCardClick}
+                                                            onLikeClick={handleCardLike}
+                                                            card={card}
+                                                        />
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </section>
+                                    </>)
+                                }}/>}/>}/>
+                                <Route exact path='/sign-up'
+                                       element={<Main element={<Register onTooltipClick={handleTooltipClick}/>}/>}/>
+                                <Route exact path='/sign-in'
+                                       element={<Main element={<Login onLoggedIn={setLoggedIn}/>}/>}/>
+                            </Routes>
                         </CardsContext.Provider>
                         <EditAvatarPopup
                             onUpdateAvatar={handleUpdateAvatar}
@@ -218,12 +243,12 @@ function App() {
                             isOpen={isDeleteCardPopupOpen}
                             onClose={closeAllPopups}
                         />
-                        <ImagePopup
+                        <PopupImage
                             onClose={closeAllPopups}
                             card={selectedCard}
                             isOpen={isImagePopupOpen}
                         />
-                        <InfoTooltip
+                        <PopupInfoTooltip
                             onClose={closeAllPopups}
                             isOpen={isInfoTooltipPopupOpen}
                         />

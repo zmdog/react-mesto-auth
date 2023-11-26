@@ -1,28 +1,25 @@
-class Api {
+import {BaseApi} from "./BaseApi";
+
+class Api extends BaseApi{
     constructor(options) {
-        this._options = options
+        super(options)
         this._profileAvatarEndpoint = options.profileAvatarEndpoint
-        this._baseUrl = options.baseUrl
         this._cardsEndpoint = options.cardsEndpoint
         this._profileInfoEndpoint = options.profileInfoEndpoint
 
     }
 
-    _request(endpoint, options) {
-        return fetch(`${this._baseUrl}${endpoint}`, options).then(this._getResponseData)
-    }
-
     getInitialCards() {
-        return this._request(this._cardsEndpoint, {headers: this._options.headers})
+        return this._request(this._cardsEndpoint, {headers: this._headers})
     }
 
     getInfoProfile() {
-        return this._request(this._profileInfoEndpoint, {headers: this._options.headers})
+        return this._request(this._profileInfoEndpoint, {headers: this._headers})
     }
 
     changeLikeCardStatus(id, isLiked) {
         const endpoint = `${this._cardsEndpoint}/${id}/likes`
-        const header = this._options.headers
+        const header = this._headers
         if(isLiked) {
             return this._request(endpoint, {
                 method: 'PUT',
@@ -38,14 +35,14 @@ class Api {
     deleteCard(id) {
         return this._request(`${this._cardsEndpoint}/${id}`, {
             method: 'DELETE',
-            headers: this._options.headers})
+            headers: this._headers})
     }
 
     postCard(data) {
 
         return this._request(this._cardsEndpoint, {
             method: 'POST',
-            headers: this._options.headers,
+            headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -55,7 +52,7 @@ class Api {
     setInfoProfile(data) {
         return this._request(this._profileInfoEndpoint, {
             method: 'PATCH',
-            headers: this._options.headers,
+            headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
                 about: data.status
@@ -65,18 +62,10 @@ class Api {
     setInfoAvatar(data) {
         return this._request(this._profileAvatarEndpoint, {
             method: 'PATCH',
-            headers: this._options.headers,
+            headers: this._headers,
             body: JSON.stringify({
                 avatar: data.link
             })})
-    }
-
-    _getResponseData(res) {
-        if (res.ok) {
-            return res.json()
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
     }
 
 }

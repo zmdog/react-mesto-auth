@@ -9,8 +9,11 @@ function Authorization({title, onSubmit, label, name, children}) {
     function handleSubmit(e) {
         e.preventDefault()
         onSubmit(values.password, values.email)
-        resetForm()
     }
+
+    React.useEffect(() => {
+        resetForm()
+    }, []);
 
     return (
         <div className="authorization">

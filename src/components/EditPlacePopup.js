@@ -1,6 +1,7 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import {useFormAndValidation} from "../hooks/useFormAndValidation";
+import Input from "./Input";
 
 function EditProfilePopup({isOpen, onClose, onPostCard}) {
     const {values, handleChange, errors, isValid, resetForm} = useFormAndValidation(false)
@@ -28,42 +29,27 @@ function EditProfilePopup({isOpen, onClose, onPostCard}) {
             label={'Добавить место'}
             isActive={isValid}
         >
-            <fieldset name='place' className="popup__set">
-                <label className="popup__field">
-                    <input
-                        value={values.name || ''}
-                        onChange={handleChange}
-                        className="popup__edit"
-                        name="name"
-                        placeholder="Название"
-                        id="input-place"
-                        type="text"
-                        required
-                        minLength={2}
-                        maxLength={30}
-                    />
-                    <span className="popup__input-error">
-                            {!isValid && errors.name}
-                        </span>
-                </label>
-            </fieldset>
-            <fieldset name='place' className="popup__set">
-                <label className="popup__field">
-                    <input
-                        value={values.link || ''}
-                        onChange={handleChange}
-                        type="url"
-                        className="popup__edit"
-                        name="link"
-                        id="input-link"
-                        placeholder="Ссылка на картинку"
-                        required
-                    />
-                    <span className="popup__input-error">
-                            {!isValid && errors.link}
-                        </span>
-                </label>
-            </fieldset>
+            <Input
+                value={values.name}
+                type={'text'}
+                onChange={handleChange}
+                name={'name'}
+                placeholder="Название"
+                id={'input-place'}
+                length={{min: 2, max: 30}}
+                isValid={isValid}
+                error={errors.name}
+            />
+            <Input
+                value={values.link}
+                type={'url'}
+                onChange={handleChange}
+                name={'link'}
+                placeholder="Ссылка на картинку"
+                id={'input-link'}
+                isValid={isValid}
+                error={errors.link}
+            />
         </PopupWithForm>
     )
 }

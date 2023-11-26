@@ -1,21 +1,18 @@
-import {useNavigate} from "react-router-dom";
+import {Routes, Route, Link} from "react-router-dom";
 import React from "react";
 import {CurrentUserContext} from "../contexts/CurrentUserContext";
 
-function Header({path, onLoggedIn, buttonLabel, setEmail}) {
-    const navigate = new useNavigate()
+function Header({onLoggedIn, setEmail}) {
     const email = React.useContext(CurrentUserContext).email
     const isLoggedIn = React.useContext(CurrentUserContext).isLoggedIn
     const [topBar, setTopBar] = React.useState(false)
 
-    function handleAuth() {
-        if (isLoggedIn) {
-            localStorage.removeItem('token')
-            setEmail('')
-            setTopBar(false)
-            onLoggedIn(false)
-        }
-        navigate(path, {replace: true})
+    function handleLogOut() {
+        localStorage.removeItem('token')
+        setEmail('')
+        setTopBar(false)
+        onLoggedIn(false)
+
     }
 
     function handleOpenTopBar() {
@@ -25,29 +22,51 @@ function Header({path, onLoggedIn, buttonLabel, setEmail}) {
 
     return (
         <header className="header">
-            <div className={`header__wrapper-bar header__wrapper-bar${topBar && isLoggedIn ? '_visible' : ''}`}>
-                {
-                    isLoggedIn && <>
-                        <p className={`visible header__email`}>{email}</p>
-                        <button onClick={handleAuth} className={`button visible header__button-auth
-                header__button-auth_width-400`}>
-                            {buttonLabel}
-                        </button>
-                    </>}
-            </div>
+            <Routes>
+                <Route exact path='/' element={isLoggedIn && <div
+                    className={`header__wrapper-bar header__wrapper-bar${topBar ? '_visible' : ''}`}>
+
+                    <p className={`visible header__email`}>{email}</p>
+                    <button onClick={handleLogOut}
+                            className={`button visible header__button-auth header__button-auth_width-400`}>
+                        Выйти
+                    </button>
+                </div>}/>
+            </Routes>
+
             <div className={'header__container'}>
                 <div className={'header__wrapper-logo'}>
                     <div className="header__logo"/>
                 </div>
                 <div className={'header__info'}>
                     {isLoggedIn && <p className={`header__email`}>{email}</p>}
-                    <button onClick={handleAuth}
-                            className={`button header__button-auth header__button-auth ${!isLoggedIn && 'visible'}`}>
-                        {buttonLabel}
-                    </button>
+                    <Routes>
+                        <Route path="/sign-up" element={
+                            <Link
+                                className={`button header__button-auth header__button-auth ${!isLoggedIn && 'visible'}`}
+                                to="/sign-in">
+                                Войти
+                            </Link>
+                        }/>
+                        <Route path="/sign-in" element={
+                            <Link
+                                className={`button header__button-auth header__button-auth ${!isLoggedIn && 'visible'}`}
+                                to="/sign-up">
+                                Регистрация
+                            </Link>
+                        }/>
+                        <Route path="/" element={
+                            <>
+                                <button onClick={handleOpenTopBar}
+                                        className={`button header__button-menu header__button-menu_${topBar ? 'opened' : 'closed'}`}/>
+                                <button onClick={handleLogOut}
+                                        className={`button header__button-auth header__button-auth ${!isLoggedIn && 'visible'}`}>
+                                    Выйти
+                                </button>
+                            </>
+                        }/>
+                    </Routes>
                 </div>
-                {isLoggedIn && <button onClick={handleOpenTopBar}
-                                       className={`button header__button-menu header__button-menu_${topBar ? 'opened' : 'closed'}`}/>}
             </div>
         </header>
 
