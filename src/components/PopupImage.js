@@ -8,12 +8,13 @@ function PopupImage({card, onClose, isOpen}) {
             type={`image`}
             isOpen={isOpen}
             onClose={onClose}
-            children={<>
+        >
+            <>
                 <img className="popup__image" src={card.link} alt={`Фото: ${card.name}`}
                      aria-label={`Фото: ${card.name}`}/>
                 <p className="popup__title_image">{card.name}</p>
-            </>}
-        />
+            </>
+        </Popup>
     )
 
 }

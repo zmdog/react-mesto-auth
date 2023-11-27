@@ -11,13 +11,14 @@ function PopupInfoTooltip({isOpen, onClose}) {
             isOpen={isOpen}
             type={`tooltip popup__wrapper_default`}
             onClose={onClose}
-            children={<>
+        >
+            <>
                 <div className={`popup__tooltip popup__tooltip_${isRegistered ? 'agreed' : 'denied'}`}/>
                 <p className="popup__title_tooltip">
                     {isRegistered ? 'Вы успешно зарегистрировались!' : 'Что-то пошло не так! Попробуйте ещё раз.'}
                 </p>
-            </>}
-        />
+            </>
+        </Popup>
     )
 }
 

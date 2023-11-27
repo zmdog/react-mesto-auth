@@ -11,7 +11,8 @@ function PopupWithForm({onClose, onSubmit, name, isOpen, title, children, label,
             onClose={onClose}
             type={`default`}
             isOpen={isOpen}
-            children={<>
+        >
+            <>
                 <h2 className="popup__purpose">{title}</h2>
                 <Form
                     onSubmit={onSubmit}
@@ -20,8 +21,8 @@ function PopupWithForm({onClose, onSubmit, name, isOpen, title, children, label,
                     name={name}
                     children={children}
                 />
-            </>}
-        />
+            </>
+        </Popup>
     );
 }
 

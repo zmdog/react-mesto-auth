@@ -170,58 +170,29 @@ function App() {
                             setEmail={setEmail}
                             onLoggedIn={setLoggedIn}/>
                         <CardsContext.Provider value={cards}>
-                            <Routes>
-                                <Route exact path='/' element={<Main element={<ProtectedRoute element={() => {
-                                    return (<>
-                                        <section className="profile" aria-label="Шапка профиля">
-                                            <button
-                                                onClick={handleEditAvatarClick}
-                                                className=" button profile__change-button">
-                                                <img className="profile__avatar" src={currentUser.avatar}
-                                                     alt="Иконка профиля"/>
-                                            </button>
-                                            <div className="profile__info">
-                                                <div className="profile__wrapper">
-                                                    <h1 className="profile__name">{currentUser.name}</h1>
-                                                    <button
-                                                        onClick={handleEditProfileClick}
-                                                        title="Изменить имя и статус профиля"
-                                                        aria-label="Изменить имя и статус профиля"
-                                                        type="button"
-                                                        className="button profile__edit-button"
-                                                    ></button>
-                                                </div>
-                                                <p className="profile__status">{currentUser.about}</p>
-                                            </div>
-                                            <button
-                                                onClick={handleAddPlaceClick}
-                                                title="Добавить новое Место"
-                                                aria-label="Добавить новое Место"
-                                                type="button"
-                                                className="button profile__add-button"
-                                            ></button>
-                                        </section>
-                                        <section className="elements" aria-label="Места для посещения">
-                                            <ul className="elements__elements-grid">
-                                                {cards.map(card => (
-                                                    <li key={card._id} className="wrapper-element">
-                                                        <Card
-                                                            onCardDelete={handleDeleteCard}
-                                                            onCardClick={handleCardClick}
-                                                            onLikeClick={handleCardLike}
-                                                            card={card}
-                                                        />
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </section>
-                                    </>)
-                                }}/>}/>}/>
-                                <Route exact path='/sign-up'
-                                       element={<Main element={<Register onTooltipClick={handleTooltipClick}/>}/>}/>
-                                <Route exact path='/sign-in'
-                                       element={<Main element={<Login onLoggedIn={setLoggedIn}/>}/>}/>
-                            </Routes>
+                            <main className="content">
+                                <Routes>
+                                    <Route exact path='/' element={
+                                        <ProtectedRoute element={() => {
+                                            return(
+                                                <Main
+                                                    handleAddPlaceClick={handleAddPlaceClick}
+                                                    handleEditAvatarClick={handleEditAvatarClick}
+                                                    handleEditProfileClick={handleEditProfileClick}
+                                                    handleDeleteCard={handleDeleteCard}
+                                                    handleCardClick={handleCardClick}
+                                                    handleCardLike={handleCardLike}
+                                                    Card={Card}
+                                                />
+                                            )}
+                                        }/>
+                                    }/>
+                                    <Route exact path='/sign-up'
+                                           element={<Register onTooltipClick={handleTooltipClick}/>}/>
+                                    <Route exact path='/sign-in'
+                                           element={<Login onLoggedIn={setLoggedIn}/>}/>
+                                </Routes>
+                            </main>
                         </CardsContext.Provider>
                         <EditAvatarPopup
                             onUpdateAvatar={handleUpdateAvatar}
