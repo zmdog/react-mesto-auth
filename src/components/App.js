@@ -11,7 +11,7 @@ import EditPlacePopup from "./EditPlacePopup";
 import DeleteCardPopup from "./DeleteCardPopup";
 import {FetchingContext} from "../contexts/FetchingContext";
 import {apiAuthorization} from "../utils/apiAuthorization";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {HashRouter, Route, Routes} from "react-router-dom";
 import PopupInfoTooltip from "./PopupInfoTooltip";
 import Header from "./Header";
 import ProtectedRoute from "./ProtectedRoute";
@@ -164,7 +164,7 @@ function App() {
         <CurrentUserContext.Provider
             value={{currentUser: currentUser, email: email, isLoggedIn: loggedIn, isRegistered: isRegistered}}>
             <FetchingContext.Provider value={isFetching}>
-                <BrowserRouter>
+                <HashRouter>
                     <div className="page">
                         <Header
                             setEmail={setEmail}
@@ -225,7 +225,7 @@ function App() {
                         />
                         <Footer/>
                     </div>
-                </BrowserRouter>
+                </HashRouter>
             </FetchingContext.Provider>
         </CurrentUserContext.Provider>
     );
